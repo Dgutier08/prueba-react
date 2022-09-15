@@ -4,9 +4,7 @@ import axios from "axios";
 function MiApi(){
     const [actores, SetListadoActores] = useState ([]);
     const [search, setSearch] = useState ("");
-    const [actoresdata, actoresSetData] = useState ("");
-   
-    
+    const [actoresdata, actoresSetData] = useState (""); 
     useEffect (() =>{
         const obtenerPersonaje = async ()=>{
             const url = 'http://thronesapi.com/api/v2/Characters';
@@ -31,13 +29,11 @@ function MiApi(){
     const searchHandler = (e) => {
       setSearch(e.target.value);
     }
-
-
+    console.log(search);
     const lista = !search
     ? actores
-    : actores.filter((x) => x.name.toLowerCase().includes(search.toLocaleLowerCase()))
+    : actores.filter((x) => x.name.toLowerCase().includes(setSearch))
 
-   
     return (
     <div>
 <input 
