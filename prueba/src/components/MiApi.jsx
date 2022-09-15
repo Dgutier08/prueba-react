@@ -28,25 +28,24 @@ function MiApi(){
         obtenerPersonaje()
     },[]);
 
-const buscador = (e)=>{
-  setSearch(e.target.value);
-  };
-  let filtro = []
-  if (!search){
-    filtro = actoresdata
-    } else {
-      filtro = actoresdata.filter((arreglo)=>
-      arreglo.name.toUpperCase().includes(search.toUpperCase())
-      )
+    const searchHandler = (e) => {
+      setSearch(e.target.value);
     }
+
+
+    const lista = !search
+    ? actores
+    : actores.filter((x) => x.name.toLowerCase().includes(search.toLocaleLowerCase()))
+
+   
     return (
     <div>
 <input 
 value={search}
-onChange={(e)=>setSearch(e.target.value)}
+onChange={(e)=>searchHandler (e)}
 type="text"
-placeholder="buscar actor"
-ClassName="Form-control border bg-black text-white"
+placeholder="buscardor"
+ClassName=""
 />
 <h1>Actores de Game Of Throne</h1>
  <ul>
@@ -58,13 +57,13 @@ ClassName="Form-control border bg-black text-white"
                 <img src={personas.imageUrl} alt = "imagenes" width = '200'/>
                 <h5>{personas.family}</h5>
             </li>
-            
           )
 
         }) 
     }    
     
    </ul>
+
   </div>
     )
 }   
