@@ -5,7 +5,7 @@ function MiApi(){
     const [actores, SetListadoActores] = useState ([]);
     const [search, setSearch] = useState ("");
     const [actoresdata, actoresSetData] = useState ("");
-    let sortData =[];
+   
     
     useEffect (() =>{
         const obtenerPersonaje = async ()=>{
@@ -23,13 +23,23 @@ function MiApi(){
                 return 1;
               }
             });
-      
-            actoresSetData(data);
+            SetListadoActores(data);
         }
         obtenerPersonaje()
     },[]);
-    
-    return (   
+
+const buscador = (e)=>{
+  setSearch(e.target.value);
+  };
+  let filtro = []
+  if (!search){
+    filtro = actoresdata
+    } else {
+      filtro = actoresdata.filter((arreglo)=>
+      arreglo.name.toUpperCase().includes(search.toUpperCase())
+      )
+    }
+    return (
     <div>
 <input 
 value={search}
