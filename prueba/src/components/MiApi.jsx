@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+
 function MiApi() {
   const [actores, setListadoActores] = useState([]);
   const [search, setSearch] = useState("");
@@ -36,7 +37,8 @@ function MiApi() {
       );
 
   return (
-    <div>
+    <>
+    <div className="container d-flex justify-content-center align-items-center h-100">
       <input
         value={search}
         onChange={(e) => searchHandler(e)}
@@ -48,15 +50,31 @@ function MiApi() {
         {lista.length === 0 && <p>Cargando...</p>}
         {lista.map((personas, i) => {
           return (
-            <li key={i}>
-              <h4>Nombre: {personas.fullName}</h4>
-              <img src={personas.imageUrl} alt="imagenes" width="200" />
-              <h5>{personas.family}</h5>
-            </li>
+            <>
+         <div key={i} className="container">
+          <div className="row h-100">
+            <img className="h-48 w-full object-cover h-100" src={personas.imageUrl} width="200"/>
+          </div>
+          <div className="">
+            <div className="flex-1">
+              <p className="text-sm font-medium ">
+                <a className="hover:text-gray-900 text-gray-900">
+                  {}
+                </a>
+              </p>
+              <a className="mt-6 block">
+                <p className="text-xl font-semibold text-gray-900">Nombre:{personas.fullName}</p>
+                <p className="mt-3 text-bas">Familia:{personas.family}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+            </>
           );
         })}
       </ul>
     </div>
+    </>
   );
 }
 
